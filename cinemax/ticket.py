@@ -14,7 +14,7 @@ class Ticket:
             for _ in range(8)
         )
 
-    def is_seat_available(self):
+    def is_seat_available(self, movie: str):
         pass
 
     def get_ticket_price(self):

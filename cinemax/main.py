@@ -38,9 +38,13 @@ class Processor:
             print("Current movies available: {}".format(movies_available))
             try:
                 movie_selected = int(input("Select a movie by its KEY: "))
-                # TODO: Mamfar movie has no seats available
                 if movie_selected in movies_available.keys():
                     movie = movies_available[movie_selected]
+                    if movie == "Mamfar":
+                        print("{} has no remaining seats left".format(movie))
+                        print("Please select another movie...")
+                        del movies_available[movie_selected]
+                        continue
                     print("now select seat")
                     break
                 else:
