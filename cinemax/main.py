@@ -49,11 +49,22 @@ class Processor:
                         print("Please select another movie...")
                         del movies_available[movie_selected]
                         continue
-                    print("now select seat")
+
                     # in a SQL case, this action would be locked
                     # in a countdown thread so the seat row
                     # cannot be accessed for a specific amount of time
-                    # until the user has completed the selection.
+                    movie_meta_data = [
+                        movies_data
+                        for movies_data in DATA
+                        if movie in movies_data["name"]
+                    ][0]
+
+                    # we just assume array of seats here will never be empty
+                    seats_available = _selection_mapper(movie_meta_data["seats"])
+
+                    # select seat
+
+                    print("Seats currently available: {}".format(seats_available))
                     break
                 else:
                     print("Wrong KEY provided as input")
