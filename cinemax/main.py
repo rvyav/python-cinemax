@@ -8,17 +8,17 @@ DATA = [
 ]
 
 
-class Processor(object):
+class Processor:
     def run(self):
         name = input("Enter your name: ")
 
         while True:
-            email = input("Enter your email (Format must be valid!): ")
+            email = input("Enter your email (Format must be valid!!): ")
 
             user = User(name, email)
-            check_email = user.validate_email(email)
+            is_email_valid = user.validate_email(email)
 
-            if not check_email:
+            if not is_email_valid:
                 print("Email format is not correct")
                 continue
             else:
