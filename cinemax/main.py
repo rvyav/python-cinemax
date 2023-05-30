@@ -17,7 +17,7 @@ class Processor:
             email = input("Enter your email (Format must be valid!!): ")
 
             user = User(name, email)
-            is_email_valid = user.validate_email(email)
+            is_email_valid = user.validate_email()
 
             if not is_email_valid:
                 print("Email format is not correct")
