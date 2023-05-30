@@ -49,22 +49,34 @@ class Processor:
                         print("Please select another movie...")
                         del movies_available[movie_selected]
                         continue
+                    break
+                else:
+                    print("Wrong KEY provided as input")
+                    continue
+            except Exception as e:
+                print("error: {}".format(e))
+                continue
 
-                    # in a SQL case, this action would be locked
-                    # in a countdown thread so the seat row
-                    # cannot be accessed for a specific amount of time
-                    movie_meta_data = [
-                        movies_data
-                        for movies_data in DATA
-                        if movie in movies_data["name"]
-                    ][0]
+        movie_meta_data = [
+            movies_data for movies_data in DATA if movie in movies_data["name"]
+        ][0]
 
-                    # we just assume array of seats here will never be empty
-                    seats_available = _selection_mapper(movie_meta_data["seats"])
+        # we just assume array of seats here will never be empty
+        seats_available = _selection_mapper(movie_meta_data["seats"])
 
-                    # select seat
+        while seats_available:
+            # select seat
 
-                    print("Seats currently available: {}".format(seats_available))
+            # in a SQL case, this action would be locked
+            # in a countdown thread so the seat row
+            # cannot be accessed for a specific amount of time
+
+            print("Seats currently available: {}".format(seats_available))
+
+            try:
+                seat_selected = int(input("Select a seat by its KEY: "))
+                if seat_selected in seats_available.keys():
+                    print("seat selected {}".format(seat_selected))
                     break
                 else:
                     print("Wrong KEY provided as input")
