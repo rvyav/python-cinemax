@@ -14,11 +14,5 @@ class Ticket:
             for _ in range(8)
         )
 
-    def is_seat_available(self, movie: str):
-        pass
-
-    def get_ticket_price(self):
-        pass
-
     def generate_pdf(self):
         pass

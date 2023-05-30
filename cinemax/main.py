@@ -35,6 +35,7 @@ class Processor:
         movies_available = _selection_mapper(movies)
 
         while movies_available:
+            # select seat
             print("Movies currently available: {}".format(movies_available))
             try:
                 movie_selected = int(input("Select a movie by its KEY: "))
@@ -70,7 +71,6 @@ class Processor:
             # in a SQL case, this action would be locked
             # in a countdown thread so the seat row
             # cannot be accessed for a specific amount of time
-
             print("Seats currently available: {}".format(seats_available))
 
             try:

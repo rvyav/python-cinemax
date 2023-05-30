@@ -6,7 +6,7 @@ class User:
         self.name = name
         self.email = email
 
-    def purchase(self, seat, card):
+    def purchase(self, seat, card_status):
         pass
 
     def validate_email(self, email: str) -> bool:
