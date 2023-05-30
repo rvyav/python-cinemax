@@ -1,4 +1,5 @@
 from user import User
+from typing import List, Dict
 
 DATA = [
     {"name": "Hulk", "price": "$29.99", "seats": ["A1", "B3", "C21"]},
@@ -31,21 +32,28 @@ class Processor:
             if key == "name"
         ]
 
-        movies_range = [*range(1, len(movies) + 1)]
-        movies_available = dict(zip(movies_range, movies))
+        movies_available = _selection_mapper(movies)
 
         while movies_available:
-            print("Current movies available: {}".format(movies_available))
+            print("Movies currently available: {}".format(movies_available))
             try:
                 movie_selected = int(input("Select a movie by its KEY: "))
                 if movie_selected in movies_available.keys():
                     movie = movies_available[movie_selected]
                     if movie == "Mamfar":
-                        print("{} has no remaining seats left".format(movie))
+                        print(
+                            "Unfortunately, the movie {} has no seats left".format(
+                                movie
+                            )
+                        )
                         print("Please select another movie...")
                         del movies_available[movie_selected]
                         continue
                     print("now select seat")
+                    # in a SQL case, this action would be locked
+                    # in a countdown thread so the seat row
+                    # cannot be accessed for a specific amount of time
+                    # until the user has completed the selection.
                     break
                 else:
                     print("Wrong KEY provided as input")
@@ -53,6 +61,15 @@ class Processor:
             except Exception as e:
                 print("error: {}".format(e))
                 continue
+
+
+def _selection_mapper(selection: List[Dict[str, str]]) -> Dict[str, str]:
+    """
+    map index key with available selection of items.
+    :selection: list of selected items
+    """
+    selection_range = [*range(1, len(selection) + 1)]
+    return dict(zip(selection_range, selection))
 
 
 if __name__ == "__main__":
