@@ -35,7 +35,7 @@ class Processor:
         movies_available = _selection_mapper(movies)
 
         while movies_available:
-            # select seat
+            # movie selection
             print("Movies currently available: {}".format(movies_available))
             try:
                 movie_selected = int(input("Select a movie by its KEY: "))
@@ -62,11 +62,11 @@ class Processor:
             movies_data for movies_data in DATA if movie in movies_data["name"]
         ][0]
 
-        # we just assume array of seats here will never be empty
+        # we just assume the array of seats here will never be empty
         seats_available = _selection_mapper(movie_meta_data["seats"])
 
         while seats_available:
-            # select seat
+            # seat selection
 
             # in a SQL case, this action would be locked
             # in a countdown thread so the seat row
@@ -76,7 +76,11 @@ class Processor:
             try:
                 seat_selected = int(input("Select a seat by its KEY: "))
                 if seat_selected in seats_available.keys():
+                    seat_price = movie_meta_data["price"]
                     print("seat selected {}".format(seat_selected))
+                    print("seat price is: {}".format(seat_price))
+
+                    # valid card and payment then generate PDF
                     break
                 else:
                     print("Wrong KEY provided as input")
@@ -88,7 +92,7 @@ class Processor:
 
 def _selection_mapper(selection: List[Dict[str, str]]) -> Dict[str, str]:
     """
-    map index key with available selection of items.
+    mapping range as keys with available selection of items.
     :selection: list of selected items
     """
     selection_range = [*range(1, len(selection) + 1)]
