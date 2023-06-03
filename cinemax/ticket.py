@@ -1,10 +1,12 @@
 import random
 import string
 
+from cinemax.user import User
 
-class Ticket:
-    def __init__(self, user, price, seat_number):
-        self.user = user
+
+class Ticket(User):
+    def __init__(self, name, email, price, seat_number):
+        super().__init__(name, email)
         self.price = price
         self.seat_number = seat_number
         self.id = "".join(

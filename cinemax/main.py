@@ -1,12 +1,18 @@
 from user import User
 from typing import List, Dict
 
+from cinemax.card import Card
+from cinemax.ticket import Ticket
+
 DATA = [
     {"name": "Hulk", "price": "$29.99", "seats": ["A1", "B3", "C21"]},
     {"name": "Indiana Jones", "price": "$21.99", "seats": ["C34"]},
     {"name": "FX 10", "price": "$34.99", "seats": ["A25", "E1"]},
     {"name": "Mamfar", "price": "$12.99", "seats": []},
 ]
+
+CREDIT_CARD = "credit"
+DEBIT_CARD = "debit"
 
 
 class Processor:
@@ -79,6 +85,46 @@ class Processor:
                     seat_price = movie_meta_data["price"]
                     print("seat selected {}".format(seat_selected))
                     print("seat price is: {}".format(seat_price))
+
+                    while seat_price:
+                        try:
+                            card_type_input = input("Enter card Type: ")
+                            card_number_input = input("Enter card Number: ")
+                            card_holder_input = input("Enter card Holder: ")
+                            card_cvv = input("Enter card CVV: ")
+
+                            card = Card(
+                                card_type_input,
+                                card_number_input,
+                                card_holder_input,
+                                card_cvv,
+                            )
+
+                            if card.is_valid():
+                                seats_available: list[str] = movie_meta_data["seats"]
+                                print(
+                                    "Current seats available: {}".format(
+                                        seats_available
+                                    )
+                                )
+
+                                while True:
+                                    seat_selection = input("Enter seat number: ")
+
+                                    if seat_selection in seats_available:
+                                        seats_available.remove()
+
+                                        ticket = Ticket(seat_price, seat_selection)
+
+                                        # purchase transaction
+                                    else:
+                                        continue
+
+                            else:
+                                print("wrong")
+                                continue
+                        except Exception as e:
+                            print("error")
 
                     # valid card and payment then generate PDF
                     break

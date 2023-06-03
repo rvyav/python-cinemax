@@ -26,4 +26,8 @@ class Card(User):
             or self.name not in self.holder
         ):
             return False
+        elif len(self.cvv) > 3:
+            return False
+        elif len(self.cvv) < 3:
+            return False
         return True
