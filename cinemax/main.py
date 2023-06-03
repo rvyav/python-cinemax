@@ -95,6 +95,7 @@ class Processor:
 
                             card = Card(
                                 name,
+                                email,
                                 card_type_input,
                                 card_number_input,
                                 card_holder_input,

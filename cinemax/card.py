@@ -2,8 +2,8 @@ from cinemax.user import User
 
 
 class Card(User):
-    def __init__(self, name, type, number, holder, cvv):
-        super().__init__(name)
+    def __init__(self, name, email, type, number, holder, cvv):
+        super().__init__(name, email)
         self.type = type
         self.number = number
         self.holder = holder
