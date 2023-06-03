@@ -17,4 +17,4 @@ class Ticket(User):
         )
 
     def generate_pdf(self):
-        pass
+        print("PDF GENERATED")

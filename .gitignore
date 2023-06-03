@@ -1,5 +1,9 @@
 .vscode/
 env/
 
+dist/
+build/
+cinemax.egg-info/
+
 *.DS_Store
 **/.DS_Store

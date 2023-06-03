@@ -2,8 +2,8 @@ from cinemax.user import User
 
 
 class Card(User):
-    def __init__(self, name, email, type, number, holder, cvv):
-        super().__init__(name, email)
+    def __init__(self, name, type, number, holder, cvv):
+        super().__init__(name)
         self.type = type
         self.number = number
         self.holder = holder
@@ -26,8 +26,6 @@ class Card(User):
             or self.name not in self.holder
         ):
             return False
-        elif len(self.cvv) > 3:
-            return False
-        elif len(self.cvv) < 3:
+        if len(self.cvv) != 3:
             return False
         return True

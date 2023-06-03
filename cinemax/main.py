@@ -94,6 +94,7 @@ class Processor:
                             card_cvv = input("Enter card CVV: ")
 
                             card = Card(
+                                name,
                                 card_type_input,
                                 card_number_input,
                                 card_holder_input,
@@ -116,7 +117,8 @@ class Processor:
 
                                         ticket = Ticket(seat_price, seat_selection)
 
-                                        # purchase transaction
+                                        ticket.generate_pdf()
+                                        break
                                     else:
                                         continue
 
@@ -124,7 +126,7 @@ class Processor:
                                 print("wrong")
                                 continue
                         except Exception as e:
-                            print("error")
+                            print("error: {}".format(e))
 
                     # valid card and payment then generate PDF
                     break
