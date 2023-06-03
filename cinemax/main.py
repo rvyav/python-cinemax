@@ -128,9 +128,6 @@ class Processor:
                                 continue
                         except Exception as e:
                             print("error: {}".format(e))
-
-                    # valid card and payment then generate PDF
-                    break
                 else:
                     print("Wrong KEY provided as input")
                     continue
