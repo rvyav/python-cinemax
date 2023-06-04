@@ -119,11 +119,12 @@ class Processor:
                                     seat_selection = input("Enter seat number: ")
 
                                     if seat_selection in seats_available:
+                                        # remove ticket from availability
                                         seats_available.remove(seat_selection)
 
-                                        print("seats_available: ", seats_available)
-
-                                        ticket = Ticket(seat_price, seat_selection)
+                                        ticket = Ticket(
+                                            name, email, seat_price, seat_selection
+                                        )
 
                                         ticket.generate_pdf()
                                         break
