@@ -130,7 +130,7 @@ class Processor:
                                         break
                                     else:
                                         continue
-
+                                break
                             else:
                                 print("wrong")
                                 continue
@@ -140,6 +140,7 @@ class Processor:
                 else:
                     print("Wrong KEY provided as input")
                     continue
+                break
             except Exception as e:
                 print("error: {}".format(e))
                 continue
