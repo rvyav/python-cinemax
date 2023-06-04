@@ -20,7 +20,7 @@ class Card(User):
         """
         number: str = self.number
         if (
-            number[:2] != "456"
+            number[:3] != "456"
             or len(number) != 16
             or not number.isdigit()
             or self.name not in self.holder

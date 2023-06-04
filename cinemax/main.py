@@ -1,8 +1,9 @@
-from user import User
+import enum
 from typing import List, Dict
 
 from cinemax.card import Card
 from cinemax.ticket import Ticket
+from cinemax.user import User
 
 DATA = [
     {"name": "Hulk", "price": "$29.99", "seats": ["A1", "B3", "C21"]},
@@ -11,8 +12,10 @@ DATA = [
     {"name": "Mamfar", "price": "$12.99", "seats": []},
 ]
 
-CREDIT_CARD = "credit"
-DEBIT_CARD = "debit"
+
+class CreditCardType(enum.Enum):
+    CREDIT_CARD = "credit"
+    DEBIT_CARD = "debit"
 
 
 class Processor:
@@ -102,7 +105,9 @@ class Processor:
                                 card_cvv,
                             )
 
-                            if card.is_valid():
+                            is_card_valid = card.is_valid()
+
+                            if is_card_valid:
                                 seats_available: list[str] = movie_meta_data["seats"]
                                 print(
                                     "Current seats available: {}".format(
@@ -114,7 +119,9 @@ class Processor:
                                     seat_selection = input("Enter seat number: ")
 
                                     if seat_selection in seats_available:
-                                        seats_available.remove()
+                                        seats_available.remove(seat_selection)
+
+                                        print("seats_available: ", seats_available)
 
                                         ticket = Ticket(seat_price, seat_selection)
 
@@ -128,6 +135,7 @@ class Processor:
                                 continue
                         except Exception as e:
                             print("error: {}".format(e))
+                            continue
                 else:
                     print("Wrong KEY provided as input")
                     continue
