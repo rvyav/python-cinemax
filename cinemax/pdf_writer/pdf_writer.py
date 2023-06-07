@@ -7,10 +7,16 @@ FILENAME = "Invoice"
 class PDF:
     def writer(self, name, movie, seat_number, seat_price):
         pdf = FPDF()
-        pdf.add_page()
-        self.header(pdf, name)
-        self.body(pdf, movie, seat_number, seat_price)
-        pdf.output("{}.pdf".format(FILENAME.lower()), "F")
+        try:
+            pdf.add_page()
+            self.header(pdf, name)
+            self.body(pdf, movie, seat_number, seat_price)
+        except Exception as e:
+            print("Error: {}".format(e))
+        else:
+            pdf.output("{}.pdf".format(FILENAME.lower()), "F")
+        finally:
+            print("PDF Generated!!!")
 
     def header(self, pdf: FPDF, name: str):
         bill_to = "Bill to: {}".format(name)
