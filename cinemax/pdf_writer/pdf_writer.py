@@ -1,15 +1,15 @@
 from fpdf import FPDF
-from datetime import datetime
+from datetime import date
 
 TITLE = "Invoice"
 
 
 class PDF:
-    def writer(self):
+    def writer(self, name, movie, seat_number, seat_price):
         pdf = FPDF()
         pdf.add_page()
-        self.header(pdf)
-        self.body(pdf)
+        self.header(pdf, name)
+        self.body(pdf, movie, seat_number, seat_price)
         pdf.output("{}.pdf".format(TITLE.lower()), "F")
 
     def header(self, pdf: FPDF, name: str):
@@ -21,16 +21,16 @@ class PDF:
         pdf.set_font("Arial", "B", 14)
 
         # Add the invoice date and title to the page
-        today = datetime.now().strftime("%m/%d/%Y")
+        today = date.today().strftime("%m/%d/%Y")
         pdf.cell(0, 10, bill_to, 0, 0, "L")
-        pdf.cell(0, 10, "{}", 0, 0, "R".format(today))
+        pdf.cell(0, 10, today, 0, 0, "R")
         pdf.ln()
 
         # Set the font style and size for the table headers
         pdf.set_font("Arial", "B", 12)
 
     def body(self, pdf: FPDF, movie: str, seat_number: str, seat_price: str):
-        seat_price = "${}".format(seat_number)
+        seat_price = "${}".format(seat_price)
         # Set the font style and size for the table headers
         pdf.set_font("Arial", "B", 12)
 
@@ -61,4 +61,4 @@ class PDF:
 
 if __name__ == "__main__":
     pdf = PDF()
-    pdf.writer()
+    pdf.writer("Ema", "Adele", "B32", "19.99")
