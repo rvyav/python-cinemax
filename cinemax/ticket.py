@@ -2,6 +2,7 @@ import random
 import string
 
 from cinemax.user import User
+from cinemax.pdf_writer.pdf_writer import PDF
 
 
 class Ticket(User):
@@ -16,5 +17,6 @@ class Ticket(User):
             for _ in range(8)
         )
 
-    def generate_pdf(self):
-        print("PDF GENERATED")
+    def generate_pdf(self, name, movie, seat_number, seat_price):
+        pdf = PDF()
+        pdf.writer(name, movie, seat_number, seat_price)

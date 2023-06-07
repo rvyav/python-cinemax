@@ -126,7 +126,12 @@ class Processor:
                                             name, email, seat_price, seat_selection
                                         )
 
-                                        ticket.generate_pdf()
+                                        ticket.generate_pdf(
+                                            name,
+                                            movie_selected,
+                                            seat_selected,
+                                            seat_price,
+                                        )
                                         break
                                     else:
                                         continue
