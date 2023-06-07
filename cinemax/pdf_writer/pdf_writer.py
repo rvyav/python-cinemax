@@ -1,7 +1,7 @@
 from fpdf import FPDF
 from datetime import date
 
-TITLE = "Invoice"
+FILENAME = "Invoice"
 
 
 class PDF:
@@ -10,7 +10,7 @@ class PDF:
         pdf.add_page()
         self.header(pdf, name)
         self.body(pdf, movie, seat_number, seat_price)
-        pdf.output("{}.pdf".format(TITLE.lower()), "F")
+        pdf.output("{}.pdf".format(FILENAME.lower()), "F")
 
     def header(self, pdf: FPDF, name: str):
         bill_to = "Bill to: {}".format(name)
