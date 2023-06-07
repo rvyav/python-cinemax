@@ -1,9 +1,16 @@
+# vs and env config
 .vscode/
 env/
+
 
 dist/
 build/
 cinemax.egg-info/
 
+# system files
 *.DS_Store
 **/.DS_Store
+
+# PDFs generated
+*.pdf
+**/.pdf
