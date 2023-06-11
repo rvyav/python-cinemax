@@ -20,13 +20,12 @@ def user_three():
     return user
 
 
-def test_user_one_email_not_valid(user_one: User):
-    assert not user_one.validate_email()
+class TestUser:
+    def test_user_one_email_not_valid(self, user_one: User):
+        assert not user_one.validate_email()
 
+    def test_user_two_email_valid(self, user_two: User):
+        assert user_two.validate_email()
 
-def test_user_two_email_valid(user_two: User):
-    assert user_two.validate_email()
-
-
-def test_user_three_email_valid(user_three: User):
-    assert user_three.validate_email()
+    def test_user_three_email_valid(self, user_three: User):
+        assert user_three.validate_email()

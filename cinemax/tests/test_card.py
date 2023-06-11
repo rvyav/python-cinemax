@@ -28,13 +28,12 @@ def card_three():
     return card
 
 
-def test_card_valid(card_one: Card):
-    assert card_one.is_valid()
+class TestCard:
+    def test_card_valid(self, card_one: Card):
+        assert card_one.is_valid()
 
+    def test_card_name_not_valid(self, card_two: Card):
+        assert not card_two.is_valid()
 
-def test_card_name_not_valid(card_two: Card):
-    assert not card_two.is_valid()
-
-
-def test_card_number_not_valid(card_three: Card):
-    assert not card_three.is_valid()
+    def test_card_number_not_valid(self, card_three: Card):
+        assert not card_three.is_valid()
